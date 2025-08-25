@@ -5,8 +5,7 @@ import './App.css'
 import InputBox from './components/chatbot/inputBox'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
     <>
     <InputBox></InputBox>
