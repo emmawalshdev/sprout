@@ -12,14 +12,18 @@ const InputBox = () => {
         e.preventDefault();
         if(!input.trim()){return;}
 
+        // 1. add users message
         const timeNow = new Date().toLocaleTimeString();
-
         setMessages([...messages, {user: 'Emma', text: input, time: timeNow}]);
 
+        // call api
         sendMessageToApi(input);
         const botReply = await sendMessageToApi(input);
-        setBotReply(botReply);
 
+        setMessages((prev) => [
+            ...prev,
+            {user: 'Sprout', text: botReply, time: timeNow}
+        ])
     }
 
     return (
@@ -38,9 +42,9 @@ const InputBox = () => {
         </p>}
         {messages.map((msg, index) => (
             <p key={index}>
-                <span>Text: {msg.text}</span>
-                <span>User: {msg.user}</span>
-                <span>Time: {msg.time}</span>
+                <span>Text: {msg.text}</span> <br />
+                <span>User: {msg.user}</span> <br />
+                <span>Time: {msg.time}</span> <br />
             </p>
         ))}
         </>
