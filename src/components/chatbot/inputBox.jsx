@@ -32,6 +32,7 @@ const InputBox = () => {
             <input
                 type="text"
                 value={input}
+                className="bg-green-200 p-2 rounded-xl max-w-xs"
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type your plant question..."/>
             <button type="submit">Send</button>
