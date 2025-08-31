@@ -1,5 +1,5 @@
 // main chatbox - holds chat state + apicalls
-import React, {useState} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import sendMessageToApi from "../../api/chat";
 import InputBox from './inputBox'
 import MessageList from "./messageList";
@@ -7,6 +7,15 @@ import MessageList from "./messageList";
 const Chatbox = () => {
     const [botReply, setBotReply] = useState('')
     const [messages, setMessages] = useState([]);
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
     const sendData = async(input) => {
 
@@ -28,6 +37,7 @@ const Chatbox = () => {
         <>
         <InputBox onSend={sendData}/>
         <MessageList messages={messages} botReply={botReply}/>
+        <div ref={messagesEndRef}/>
         </>
     )
 }
