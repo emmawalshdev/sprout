@@ -1,29 +1,13 @@
 // start chat input
 import React, {useState} from "react";
-import sendMessageToApi from "../../api/chat";
 
-const InputBox = () => {
+const InputBox = ({ onSend }) => {
     const [input, setInput] = useState('');
-    const [botReply, setBotReply] = useState('')
 
-    const [messages, setMessages] = useState([]);
-
-    const handleSubmit = async(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if(!input.trim()){return;}
-
-        // 1. add users message
-        const timeNow = new Date().toLocaleTimeString();
-        setMessages([...messages, {user: 'Emma', text: input, time: timeNow}]);
-
-        // call api
-        sendMessageToApi(input);
-        const botReply = await sendMessageToApi(input);
-
-        setMessages((prev) => [
-            ...prev,
-            {user: 'Sprout', text: botReply, time: timeNow}
-        ])
+        onSend(input);
     }
 
     return (
@@ -37,17 +21,6 @@ const InputBox = () => {
                 placeholder="Type your plant question..."/>
             <button type="submit">Send</button>
         </form>
-        {botReply && 
-        <p>
-            {botReply}
-        </p>}
-        {messages.map((msg, index) => (
-            <p key={index}>
-                <span>Text: {msg.text}</span> <br />
-                <span>User: {msg.user}</span> <br />
-                <span>Time: {msg.time}</span> <br />
-            </p>
-        ))}
         </>
     )
 }
