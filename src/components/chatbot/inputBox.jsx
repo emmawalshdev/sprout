@@ -16,10 +16,14 @@ const InputBox = ({ onSend }) => {
             <input
                 type="text"
                 value={input}
-                className="bg-green-200 p-2 rounded-xl max-w-xs"
+                className="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-600"
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type your plant question..."/>
-            <button type="submit">Send</button>
+            <button 
+                type="submit"
+                className="bg-green-500 text-white ml-2 px-5 py-2 rounded-xl hover:bg-green-600">
+                Send
+            </button>
         </form>
         </>
     )
