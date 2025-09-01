@@ -18,7 +18,6 @@ const Chatbox = () => {
     }, [messages]);
 
     const sendData = async(input) => {
-
         // 1. add users message
         const timeNow = new Date().toLocaleTimeString();
         setMessages([...messages, {user: 'Emma', text: input, time: timeNow}]);
@@ -34,11 +33,15 @@ const Chatbox = () => {
     }
 
     return (
-        <>
-        <InputBox onSend={sendData}/>
-        <MessageList messages={messages} botReply={botReply}/>
-        <div ref={messagesEndRef}/>
-        </>
+        <div className="flex flex-col h-[80vh] rounded-xl border max-w-md shadow-lg overflow-hidden mx-auto">
+            <div className="p-4 bg-white">
+                <InputBox onSend={sendData}/>
+            </div>
+            <div className="flex-1 p-4 overflow-y-auto spay-y-3 bg-gray-50 text-black">
+                <MessageList messages={messages} botReply={botReply}/>
+                <div ref={messagesEndRef}/>
+            </div>
+        </div>
     )
 }
 
