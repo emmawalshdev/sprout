@@ -3,7 +3,6 @@ import React, {useState} from "react";
 const MessageList = ({messages, botReply}) => {
     return (
         <>
-        hello
         {botReply && 
         <div>
             {botReply}
