@@ -23,7 +23,6 @@ const Chatbox = () => {
         setMessages([...messages, {user: 'Emma', text: input, time: timeNow}]);
 
         // call api
-        sendMessageToApi(input);
         const botReply = await sendMessageToApi(input);
 
         setMessages((prev) => [
