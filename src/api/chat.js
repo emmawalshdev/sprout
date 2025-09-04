@@ -1,5 +1,4 @@
-// src/api/chat.js
-const API_URL = "http://localhost:5001/api/chat";
+const API_URL = "http://localhost:5001/api/chat"; // temp test
 
 const sendMessageToApi = async (message) => {
   try {
